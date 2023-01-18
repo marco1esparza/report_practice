@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="account_move_report">
+        <t t-call="web.html_container">
+            <div class="page">
+                <div class="header_siti">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <img src="/saleorder_custom_report/static/src/img/logo.png" style="max-height: 250; max-width: 200;"/>
+                        </div>
+                        <div class="col-xs-6 text-center">
+                            <strong>
+                                <span t-field="docs[0].company_id.name"/>
+                                <br/>
+                                <span t-field="docs[0].company_id.vat"/>
+                                <br/>
+                                <span t-field="docs[0].company_id.street"/>
+                                <br/>
+                                <span t-field="docs[0].company_id.street2"/>
+                                <span t-field="docs[0].company_id.city"/>
+                            </strong>
+                        </div>
+                        <div class="col-xs-3">
+                            <table class="table table-stripped" style="font-size: 13px;">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: center;font-weight: bold;border-bottom:1pt solid black;border-top:1pt solid black;">
+                                            <i aria-hidden="true" class="fa fa-calendar"/>
+                                            <strong>Print Date:</strong>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="border-bottom:1pt solid gray; text-align: center;">
+                                            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%Y')"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="oe_structure"/>
+                <t t-as="doc" t-foreach="docs">
+                    <div class="row ">
+                        <div class="col-xs-3">
+                            <strong>Journal Entry: </strong>
+                            <span style="text-align:center;" t-field="doc.name"/>
+                        </div>
+                        <div class="col-xs-3">
+                            <strong style="text-align:right;">Date: </strong>
+                            <span style="text-align:right;" t-field="doc.date"/>
+                        </div>
+                        <div class="col-xs-3">
+                            <strong style="text-align:right;">Reference: </strong>
+                            <span style="text-align:right;" t-field="doc.ref"/>
+                        </div>
+                        <div class="col-xs-3">
+                            <strong style="text-align:right;">State: </strong>
+                            <span style="text-align:right;" t-field="doc.state"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row ">
+                        <div class="oe_structure"/>
+                        <t t-set="sum_debit" t-value="0.0"/>
+                        <t t-set="sum_credit" t-value="0.0"/>
+                        <table class="table table-stripped" style="font-size: 13px;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;font-weight: bold;border-bottom:1pt solid black;border-top:1pt solid black;">Account</th>
+                                    <th style="text-align: center;font-weight: bold;border-bottom:1pt solid black;border-top:1pt solid black;">Description</th>
+                                    <th style="text-align: center;font-weight: bold;border-bottom:1pt solid black;border-top:1pt solid black;">Partner</th>
+                                    <th style="text-align: center;font-weight: bold;border-bottom:1pt solid black;border-top:1pt solid black;">Invoice</th>
+                                    <th style="text-align: center;font-weight: bold;border-bottom:1pt solid black;border-top:1pt solid black;">Debit</th>
+                                    <th style="text-align: center;font-weight: bold;border-bottom:1pt solid black;border-top:1pt solid black;">Credit</th>
+                                    <th style="text-align: center;font-weight: bold;border-bottom:1pt solid black;border-top:1pt solid black;">Amount Currency</th>
+                                    <th style="text-align: center;font-weight: bold;border-bottom:1pt solid black;border-top:1pt solid black;">Currency</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- class="sale_tbody">-->
+                                <t t-as="l" t-foreach="doc.line_ids">
+                                    <tr>
+                                        <td style="border-bottom:1pt solid gray;">
+                                            <span t-field="l.account_id.code"/>-
+                                            <span t-field="l.account_id.name"/></td>
+                                        <td style="word-wrap: break-word;border-bottom:1pt solid gray;">
+                                            <span t-field="l.name"/>
+                                        </td>
+                                        <td style="border-bottom:1pt solid gray;">
+                                            <span t-field="l.partner_id.name"/>
+                                        </td>
+                                        <td style="border-bottom:1pt solid gray;">
+                                            <p t-if="l.move_id.ref">
+                                                <span t-field="l.move_id.ref"/>
+                                            </p>
+                                            <p t-if="l.move_id.name">
+                                                <span t-field="l.move_id.name"/>
+                                            </p>
+                                        </td>
+                                        <td style="text-align:right;border-bottom:1pt solid gray;">
+                                            <span t-esc="'{0:,.2f}'.format(l.debit)"/>
+                                        </td>
+                                        <td style="text-align:right;border-bottom:1pt solid gray;">
+                                            <span t-esc="'{0:,.2f}'.format(l.credit)"/>
+                                        </td>
+                                        <td style="text-align:right;border-bottom:1pt solid gray;">
+                                            <span t-esc="'{0:,.2f}'.format(l.amount_currency)"/>
+                                        </td>
+                                        <td style="border-bottom:1pt solid gray;">
+                                            <span t-field="l.currency_id.name"/>
+                                        </td>
+                                        <t t-set="sum_debit" t-value="sum_debit + round(l.debit, 2)"/>
+                                        <t t-set="sum_credit" t-value="sum_credit + round(l.credit, 2)"/>
+                                    </tr>
+                                </t>
+                            </tbody>
+                            <tfooter>
+                                <tr>
+                                    <td colspan="4" style="text-align:right;font-weight: bold;padding-top: 10px;">SUMAS: </td>
+                                    <td style="text-align:right;font-weight: bold;padding-top: 10px;">
+                                        <span t-esc="'{0:,.2f}'.format(sum_debit)"/>
+                                    </td>
+                                    <td style="text-align:right;font-weight: bold;padding-top: 10px;">
+                                        <span t-esc="'{0:,.2f}'.format(sum_credit)"/>
+                                    </td>
+                                    <td colspan="3"/>
+                                </tr>
+                            </tfooter>
+                        </table>
+                    </div>
+                </t>
+                <div class="oe_structure"/>
+            </div>
+        </t>
+    </template>
+    <template id="account_move_report_translate">
+        <t t-call="report.html_container">
+            <t t-as="doc_id" t-foreach="doc_ids">
+                <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'account_move_report.account_move_report')"/>
+            </t>
+        </t>
+    </template>
+    <record id="print_account_move_report" model="ir.actions.report">
+        <field name="name">Journal Entry</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">report_account_move_sitibt.account_move_report</field>
+        <field name="report_file">report_account_move_sitibt.account_move_report</field>
+        <field name="print_report_name">'Journal Entry - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

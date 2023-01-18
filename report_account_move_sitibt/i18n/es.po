@@ -1,0 +1,121 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* report_account_move_sitibt
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-08 17:09+0000\n"
+"PO-Revision-Date: 2022-12-08 17:09+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: report_account_move_sitibt
+#: model:ir.actions.report,print_report_name:report_account_move_sitibt.print_account_move_report
+msgid "'Journal Entry - %s' % (object.name)"
+msgstr "'Entrada de diario - %s' % (object.name)"
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.account_move_report
+msgid ""
+"<i aria-hidden=\"true\" class=\"fa fa-calendar\"/>\n"
+"                                            <strong>Print Date:</strong>"
+msgstr ""
+"<i aria-hidden=\"true\" class=\"fa fa-calendar\"/>\n"
+"                                            <strong>Fecha de impresión:</strong>"
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.account_move_report
+msgid "<strong style=\"text-align:right;\">Date: </strong>"
+msgstr "<strong style=\"text-align:right;\">Fecha: </strong>"
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.account_move_report
+msgid "<strong style=\"text-align:right;\">Reference: </strong>"
+msgstr "<strong style=\"text-align:right;\">Referencia: </strong>"
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.account_move_report
+msgid "<strong style=\"text-align:right;\">State: </strong>"
+msgstr "<strong style=\"text-align:right;\">Estado: </strong>"
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.report_accountmove_document_sitibt
+msgid "<strong>Billing Address</strong>"
+msgstr "<strong>Dirección de facturación</strong>"
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.account_move_report
+msgid "<strong>Journal Entry: </strong>"
+msgstr "<strong>Póliza: </strong>"
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.report_accountmove_document_sitibt
+msgid "<strong>Shipping address</strong>"
+msgstr "<strong>Dirección de envío</strong>"
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.report_accountmove_document_sitibt
+msgid "<strong>Subtotal</strong>"
+msgstr ""
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.account_move_report
+msgid "Account"
+msgstr "Cuenta Contable"
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.account_move_report
+msgid "Amount Currency"
+msgstr "Monto M.E."
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.account_move_report
+msgid "Credit"
+msgstr "Haber"
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.account_move_report
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.account_move_report
+msgid "Debit"
+msgstr "Debe"
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.account_move_report
+msgid "Description"
+msgstr "Descripción"
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.account_move_report
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: report_account_move_sitibt
+#: model:ir.actions.report,name:report_account_move_sitibt.print_account_move_report
+#: model:ir.model,name:report_account_move_sitibt.model_account_move
+msgid "Journal Entry"
+msgstr "Póliza"
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.account_move_report
+msgid "Partner"
+msgstr "Cliente"
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.view_move_form_print_account_move
+msgid "Print Account Entry"
+msgstr "Imprimir entrada de cuenta"
+
+#. module: report_account_move_sitibt
+#: model_terms:ir.ui.view,arch_db:report_account_move_sitibt.account_move_report
+msgid "SUMAS:"
+msgstr ""
